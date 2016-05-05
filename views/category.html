@@ -1,0 +1,108 @@
+{% extends "views.base" %}
+
+{% block content %}
+
+<div class="central-content">
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/">Home</a>
+                    /
+                    {% if category.parent %}
+                        <a href="{{ category.parent.url }}">{{ category.parent.name }}</a>
+                    /
+                    {% endif %}
+                    {{ category.name }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="titulo-pagina cat-verde">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>{{ category.name }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="resultado-busqueda">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>{{ category.products | length }} resultados encontrados</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'views.inc/categoria-busqueda' %}
+
+    <div class="home-destacados-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="titulo-seccion">Productos</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="productos-content">
+                        {% for product in category.products %}
+                        <div class="producto-item-fix">
+                            <div class="producto-item">
+                                <div class="destacado-box-imagen">
+                                    <img src="{{ product.image.medium }}" class="img-responsive" />
+                                    <div class="overlay">
+                                        <a href="#" class="left" data-item="{{ product.idProduct }}" onclick="agregarCarrito(this, event)" data-toggle="tooltip" data-placement="top" title="Agregar al Carrito"><i class="fa fa-plus"></i></a>
+                                        <a href="#" class="right" data-item="{{ product.idProduct }}" onclick="agregarFavoritos(this, event)" data-toggle="tooltip" data-placement="top" title="Agregar a Favoritos"><i class="fa fa-heart-o"></i></a>
+                                    </div>
+                                </div>
+                                <div class="destacado-box-descripcion">
+                                    <div class="titulo">
+                                        <a href="{{ product.url }}">
+                                            {{ product.name }}
+                                        </a>
+                                    </div>
+                                    
+                                <div class="grop">
+                                    {% if product.salePrice > 0 %}
+                                     <h3 class="precio"><b data-salePrice>{{ product.salePrice | price }}</b><br> 
+                                        <small class="dscto" data-price>{{ product.price | price }}</small></h3>
+                                     {% else %}
+                                        <div class="precio">{{ product.price | price }}</div>
+                                    {% endif %}
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if category.pages > 1 %}
+    <div class="paginado-busqueda">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="paginado-busqueda-content">
+                        {% if category.currentPage > 1 %}
+                        <a href="?page={{ category.currentPage - 1 }}" class="left"><span><</span>Anterior</a>
+                        {% endif %}
+                        <span class="span-central">{{ category.currentPage }}/{{ category.pages }}</span>
+                        {% if category.currentPage < category.pages %}
+                        <a href="?page={{ category.currentPage + 1 }}" class="right">Siguiente<span>></span></a>
+                        {% endif %}
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% include 'views.inc.home-destacados' %}
+</div>
+
+{% endblock %}

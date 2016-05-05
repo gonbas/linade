@@ -1,0 +1,623 @@
+@import "parts/colores";
+@import "parts/forms";
+
+/*******************************************************************************
+BASICOS
+*******************************************************************************/
+body{
+    background: @body-fondo;
+}
+a{
+    &:hover{
+        text-decoration: none; 
+    }
+}
+.central-content{
+    padding: 32px 0;
+    .titulo-pagina span{
+        background: @body-fondo;
+    }     
+}
+
+.titulo-seccion{
+    .fredo;
+    font-size: 30px;
+    color:@gris-oscuro;
+    text-transform: uppercase;
+}
+.titulo-pagina{
+    .fredo;
+    font-size: 35px;
+    text-align: center;
+    position:relative;
+    margin-bottom: 35px;
+    span{
+        position: relative;
+        z-index: 3;
+        padding-left: 10%;
+        padding-right: 10%;
+        max-width: 80%
+    }
+    &:before,&:after{
+        height: 2px;
+        width:50%;
+        background:#FFF;
+        content:"";
+        position:absolute;
+        top:50%;
+        margin-top: -1px;
+    }
+    &:before{
+        left: 0;
+    }
+    &:after{
+        right:0;
+    }
+
+    @media (max-width:767px){
+        &:before,&:after{display:none;}
+        font-size:25px;
+        text-align:center;
+        span{
+            padding-left: 2%;
+            padding-right: 2%;            
+            display:block;
+            margin:0 auto;
+        }
+    }      
+}
+.breadcrumbs{
+    text-align: center;
+    padding-bottom: 20px;
+    .quick;
+    font-size: 16px;
+    color:@texto-bread;
+    a{
+        color:@texto-bread;   
+        &:hover{
+            color:#FFF; 
+        }
+    }
+}
+
+.link-underline(@color){
+    .underline-from-center;
+    &:hover,&.active{
+        color:@color; 
+    }
+    &:before{
+        background: @color;         
+    }  
+}
+
+.texto-descripcion{
+    .quick;
+    font-size: 20px;
+    line-height: 23px;
+    color: @texto-claro;
+}
+
+
+/*******************************************************************************
+TOP  
+*******************************************************************************/
+@import "parts/top";
+/*******************************************************************************
+MENU  
+*******************************************************************************/
+@import "parts/menus";
+
+/*******************************************************************************
+HOME
+*******************************************************************************/
+@import "parts/banner";
+
+@import "parts/home";
+
+/*******************************************************************************
+FOOTER BOXES
+*******************************************************************************/
+@import "parts/footer";
+
+
+/*******************************************************************************
+LOGIN
+*******************************************************************************/
+.bglogin{
+    background: @fondo-violeta;
+    padding-bottom:120px;
+    .titulo-pagina{
+        &:before,&:after{
+            background:@body-fondo;           
+        }        
+        span{
+            background: @fondo-violeta;
+        }          
+    }
+}
+.login-content{
+    background: #FFF;
+    .border-radius(10px);
+    padding: 18px;
+    position:relative;
+}
+.bglogin .login-content{
+    &:before{
+        position: absolute;
+        top: 0;
+        left:50%;
+        bottom:0;
+        height: 100%;
+        width: 1px;
+        background: @input-border;
+        content:"";
+        @media (max-width:992px){
+            display:none;
+        }         
+    }
+}    
+.inicio-session{
+    max-width: 255px;
+    margin:0 auto;
+    .quick;
+    font-size:13px;
+    a{
+        color:@button-border;
+        .link-underline(@button-border);
+        line-height: 20px;  
+    }
+    .basic-input;
+    .basic-button;
+    .basic-checbox;
+    .title{
+        .form-title;
+    }
+    .footer{
+        text-align: center;
+        padding: 20px 0 20px 0;
+    }
+}
+
+.inicio-registro{
+    .inicio-session;
+}
+
+/*******************************************************************************
+CONTACTO
+*******************************************************************************/
+.contacto-content{
+    .login-content;
+    .basic-input;
+    .basic-button;
+    .basic-checbox; 
+    .basic-textarea;
+    .texto-descripcion{
+        padding: 20px 80px;
+        @media (max-width:992px){
+            padding: 20px;
+            font-size:13px;
+        }              
+    }
+    .form-contacto{
+        max-width: 520px;
+        margin: 0 auto;
+        padding-bottom: 30px;
+    }
+}
+
+/*******************************************************************************
+FAVORITOS
+*******************************************************************************/
+@import "parts/favoritos";
+
+/*******************************************************************************
+CARRITO
+*******************************************************************************/
+.carrito-content{
+    .favoritos-content;
+}
+.carrito-row{
+    .favorito-row;
+    .fav-cantidad{
+        padding-top:18px;  
+        @media (max-width:992px){        
+            padding-top:5px;
+        }     
+    }
+}
+.carrito-cuenta{
+    input.cupon{
+        width: 215px;
+        display: inline-block;
+        font-size: 15px;
+    }
+    .right{
+        text-align:right;        
+        button{
+            margin-left: 25px;
+        }
+    }
+    .left{
+        text-align:left; 
+        button{
+            margin-right: 25px;
+        }   
+    }
+    @media (max-width:767px){        
+        .right,.left{
+            text-align: right;
+            padding: 5px 0;
+        }
+    } 
+}
+
+.carrito-total-detalle{
+    padding: 20px 0;
+    text-align: right;
+    .carrito-total-descripcion{
+        .fredo;
+        font-size: 20px;
+        text-transform: uppercase;
+        padding: 4px 0;
+
+    }
+    .carrito-total-valor{
+        .sniglet-bold;
+        font-size: 20px;
+        padding: 4px 0;
+        &.total{
+            color:@violeta;    
+        }        
+    }
+    .radio{
+        margin-top:0;
+        label{
+            display: block; 
+            .quick;
+            pa
+            input{
+                margin:0;
+                left: 0;
+            }
+            strong{
+                .sniglet-bold;  
+                display: inline-block;
+                width: 44%;
+            }
+            span{
+                text-align: left;
+                display: inline-block;
+                width: 52%;
+            }
+        }
+    }
+}
+
+/*******************************************************************************
+CATEGORIA
+*******************************************************************************/
+.titulo-pagina.cat-verde{
+    margin-bottom: 10px;
+    color:#FFF;
+    text-transform:uppercase;
+    span{
+        padding-top: 6px;
+        padding-bottom: 6px;
+        padding-left: 80px;
+        padding-right: 80px;
+        background: @cat-verde;
+        .border-radius(10px);
+    }
+}
+.resultado-busqueda{
+    padding-bottom: 25px;
+    text-align: center;
+    .quick-bold;
+    font-size: 12px;
+}
+.form-busqueda-content{
+    .login-content;
+    .basic-select;
+    label,select{
+        display:inline-block;
+    }    
+    label{
+        width: 35%;     
+        .quick; 
+        &:after{
+            content: ":";
+        }
+        @media (min-width:767px) and (max-width:992px){
+            font-size:11px;
+        }          
+    }
+    select{
+        width: 60%;
+    }
+}
+.paginado-busqueda{
+    position:relative;
+    bottom:-32px;    
+    .paginado-busqueda-content{
+        background:@footer-suscri-btn;
+        padding: 4px 13px; 
+        .border-radius(10px 10px 0 0);
+        text-transform: uppercase;
+        text-align: center;
+        color:#FFF;
+        .fredo;
+        font-size: 23px;
+        @media (max-width:767px){
+            font-size:15px;
+        }        
+        a{
+            .link-underline(#FFF);
+            &.right{
+                float:right;
+                span{
+                    margin-left: 30px;
+                }                
+            }
+            &.left{
+                float:left;
+                span{
+                    margin-right: 30px;
+                }
+            }
+            color:#FFF;
+            span{
+
+            }
+        }
+    }
+}
+
+/*******************************************************************************
+PRODUCTO
+*******************************************************************************/
+@import 'parts/producto';
+
+/*******************************************************************************
+MI CUENTA
+*******************************************************************************/
+.mi-cuenta-content{
+    .contacto-content;
+}
+.mi-cuenta-navegacion{
+    padding: 20px 20px 50px 20px;
+    .mi-cuenta-navegacion-item{
+        width: 50%;
+        float: left;
+        text-align: center;
+        img{
+            margin: 0 auto;
+        }
+        @media (max-width:400px){
+            width: 100%;
+        }
+    }
+    .color-favoritos{
+        .float;
+        a{
+            color:@color-favoritos;
+        }
+    }
+    .color-tickets{
+        .float;
+        a{
+            color:@color-tickets;
+        }
+    }
+    .color-resenas{
+        .float-shadow;
+        a{
+            color: @color-resenas;
+        }
+    }
+}
+.mi-cuenta-form{
+    position: relative;
+    padding: 40px 0;
+    &:before{
+        position: absolute;
+        top: 0;
+        left:50%;
+        bottom:0;
+        height: 100%;
+        width: 1px;
+        background: @input-border;
+        content:"";
+        @media (max-width:992px){
+            display:none;
+        }   
+    }
+    &:after{
+        position: absolute;
+        top: 0;
+        left:-15px;        
+        height: 1px;
+        width: 100%;
+        background: @input-border;
+        content:"";
+        padding-left:15px;
+        padding-right:15px;
+        @media (max-width:992px){
+            display:none;
+        }    
+    }
+}
+.cambiar-password{
+    .inicio-session;
+    .title{
+        font-size: 20px;
+    }
+}
+.cambiar-direccion{
+      .inicio-session;
+      .basic-select; 
+      max-width: 510px;
+      .form-group{ 
+          width: 100%;
+          padding: 5px 0;
+      }
+      .form-inline .form-control{
+        vertical-align: top;
+      }
+      label{
+          width: 35%;
+            font-size: 24px;
+            .quick-bold;          
+          &.error{
+            width: 100%;
+          }
+          @media (max-width:767px){
+            width: 100%;
+          }
+      } 
+      .form-inline select,
+      .form-inline input{
+        height: 40px;
+        border:solid 2px @input-border;
+        width: 60%;
+        font-size: 24px;
+        .quick;
+        color: @texto-bread;
+          @media (max-width:767px){
+            width: 100%;
+          }        
+      }
+       .form-inline select{
+        font-size: 22px
+       }
+      .cont-submit{
+        text-align: center;
+      }
+      button{
+        margin: 0 auto;
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+}
+
+/*******************************************************************************
+MIS TICKETS
+*******************************************************************************/
+.mis-tickets-row{
+    .carrito-row;
+    .fav-imagen{
+        padding-top: 18px;
+        img{
+            &:hover,
+            &:focus,
+            &:active {
+                .box-shadow(none);
+            }
+        }
+    }
+}
+/*******************************************************************************
+FAQ
+*******************************************************************************/
+.faq-content{
+    .mi-cuenta-content;
+}
+.faq-row{
+    .carrito-row;
+}    
+.faq-row-respuesta{
+    background: @body-fondo;
+    padding: 10px 18px;
+    margin-right: -18px;
+    margin-left: -18px;
+    .fix{
+        width: 80%;
+        margin: 0 auto;
+        .texto-base-claro;
+    }
+}
+
+/*******************************************************************************
+Checkout
+*******************************************************************************/
+.checkout-content{
+    .mi-cuenta-content;
+}
+.checkout-content-direccion{
+    padding-bottom: 30px;
+    label{
+        vertical-align: top;
+    }
+    .texto{
+        display: inline-block;
+        .quick;
+        font-size: 18px;
+        color:@texto-bread;
+        a{
+            text-decoration: underline;
+        }
+    }
+    textarea{
+        width: 60%;
+        height: 60px;
+    }
+}
+.checkout-content-productos{
+    margin-left: -18px;
+    margin-right: -18px;
+    border-top: solid 1px @input-border;
+    padding-top: 10px;
+    .title{
+        .form-title;
+    }
+    .fav-precio{
+        text-align: right;
+    }    
+}
+.checkout-content-detalle{
+    margin-left: -18px;
+    margin-right: -18px;
+    border-bottom: solid 1px @input-border;
+    padding-top: 10px;
+    padding-bottom: 10px;   
+}
+.checkout-content-medios-pagos{
+    margin-left: -18px;
+    margin-right: -18px;
+    border-bottom: solid 1px @input-border;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    .title{
+        .form-title;
+    }  
+    label{
+        .quick;
+        font-size: 20px;
+        color: @texto-bread;
+        text-transform: uppercase;
+    }    
+    .checkout-pagos-detalle{
+        .faq-row-respuesta;    
+    }
+    
+}
+.checkout-content-medios-pagar{
+    text-align: right;
+    padding: 80px 0 30px 0;
+    label, button{
+        display: inline-block;
+    }
+    label{
+        .quick;
+        font-size: 16px;
+        color: @texto-bread;
+        input{
+            margin-right: 15px; 
+        }
+    }
+    button{
+        padding-left: 35px;
+        padding-right: 35px;
+        text-transform: uppercase;
+        margin-left: 20px;
+    }
+}

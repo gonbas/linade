@@ -1,0 +1,33 @@
+{% extends "views.base" %}
+
+{% block content %}
+
+<div class="central-content">
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/">Home</a> / {{ page.title }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="titulo-pagina">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>{{ page.title }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {{ page.content }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

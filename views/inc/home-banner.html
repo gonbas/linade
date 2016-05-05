@@ -1,0 +1,52 @@
+<div class="banner-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-9 pull-right">
+                <div class="st-banner">
+                    <ul class="rslides">
+                        {% for slide in page.banner.main.slides %}
+                            <li><a href="{{ slide.url }}"><img src="{{ slide.image }}" class="img-responsive" /></a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-3 pull-left">
+                <div class="menu-categorias-sidebar">
+                    <ul>
+                        
+                        {% for category in categories %} 
+                            {% if category.children | length > 0 %}
+                                <li><a role="button" data-toggle="collapse" href="#cat-{{ category.slug }}" aria-expanded="false">{{ category.name }}</a></li>
+                                <div class="collapse" id="cat-{{ category.slug }}">
+                                {% for level in category.children %}  
+                                    {% if level.children | length > 0 %}                   
+                                            <li><a role="button" data-toggle="collapse" href="#cat-{{ level.slug }}" aria-expanded="false">{{ level.name }}</a></li>
+                                            <div class="collapse" id="cat-{{ level.slug }}">
+                                            {% for sub in level.children %}
+                                                {% if sub.children | length > 0 %}
+                                                <li><a role="button" data-toggle="collapse" href="#cat-{{ sub.slug }}" aria-expanded="false">{{ sub.name }}</a></li>
+                                                {% else %}
+                                                <li><a href="{{ sub.url }}" class="{{ sub.isActive }}">{{ sub.name }}</a></li>
+                                                {% endif %}
+                                            {% endfor %}    
+                                            </div>         
+                                    {% else %}
+                                        <li><a href="{{ level.url }}" class="{{ level.isActive }}">{{ level.name }}</a></li>          
+                                    {% endif %}    
+                                {% endfor %}                    
+                                </div>
+                            {% else %}
+                                <li><a href="{{ category.url }}" class="{{ category.isActive }}">{{ category.name }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+                               

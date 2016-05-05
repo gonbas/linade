@@ -1,0 +1,54 @@
+{% extends "views.base" %}
+
+{% block content %}
+
+<div class="central-content">
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/">Home</a> / Mi Carrito
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="titulo-pagina">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>Mi Carrito</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="/cart/update" method="POST" class="carrito-content">
+                    <div class="inner">
+                        {% for item in cart.product %}
+                        {% include 'views.inc.cart-row' %}
+                        {% endfor %}
+                        <div class="clearfix"></div>
+                        <div class="carrito-cuenta">
+                            <hr/>
+                            <div class="row">
+                                <div class="col-sm-6 left">
+                                    <input type="text" class="form-control cupon" name="cupon" id="cupon" placeholder="Cupón de Descuento" value="{{ cart.coupon.code }}">
+                                    <button type="button" class="btn chico-button" onclick="validarCupon(this)">APLICAR</button>
+                                </div>
+                                <div class="col-sm-6 right">
+                                    <button type="submit" class="btn chico-button">Actualizar</button>
+                                    <a href="/checkout" class="btn invertido-button">PROCEDER A PAGAR</a>
+                                </div>
+                            </div>
+                            {% include 'views.inc.cart-detail' %}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

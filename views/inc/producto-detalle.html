@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="producto-detalle-content">
+                <div class="producto-detalle-top">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="producto-detalle-galeria">
+                                {% include 'views.inc.producto-detalle-galeria' %}
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="producto-detalle-top">
+                                {% include 'views.inc.producto-detalle-top' %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="producto-detalle-bottom">
+                    {% include 'views.inc.producto-detalle-tabs' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

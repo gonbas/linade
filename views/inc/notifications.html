@@ -1,0 +1,28 @@
+{% if errors | length > 0 %}
+
+<div class="alert alert-global alert-danger">
+    <h4><b>Oops!</b></h4>
+    {% if errors.all %}
+    <ul class="list-unstyled">
+        {% for error in errors.all %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>
+        {{ app.session.get('errors') }}
+    </p>
+    {% endif %}
+</div>
+
+{% endif %}
+{% if app.session.has('message') | length > 0 %}
+
+<div class="alert alert-global alert-success">
+    <h4></b>Exito!</b></h4>
+    <p>
+        {{ app.session.get('message') }}
+    </p>
+</div>
+
+{% endif %}

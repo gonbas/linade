@@ -1,0 +1,78 @@
+<div class="product_gallery">
+
+    <div class="row">
+
+        <div class="col-xs-9">
+            <div class="gallery">
+                {% set hasImage = false %}
+
+                {% for key,image in product.images %}
+
+                <div class="easyzoom" image-color="{{ image.color.idOptionValue }}" data-image="{{ key }}" style="{{ image.main != 1 or hasImage ? 'display:none;' : '' }}">
+                    <a href="{{ image.full }}">
+                        <img src="{{ image.large }}" alt="{{ product.name }}" image-color="{{ image.color.idOptionValue }}" data-image="{{ key }}" width="100%" />
+                    </a>
+                </div>
+
+                {% if image.main == 1 %}
+                {% set hasImage = true %}
+                {% endif %}
+
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="mini_gallery" data-height=".gallery" data-height-ext="0">
+
+                {% for key,image in product.images %}
+
+                <div class="gallery_item">
+                    <img src="{{ image.thumb }}" alt="{{ product.name }}" image-color-src="{{ image.color.idOptionValue }}" class="img-responsive" data-image-src="{{ key }}"/>
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    /* Imagen Thumb */
+
+    $('[data-image-src]').click(function() {
+        var key = $(this).attr('data-image-src');
+        $('[data-image]').hide();
+        $('[data-image="'+key+'"]').show();
+        fixResizedImages();
+    });
+
+    /* Zoom */
+    var $easyzoom = $('.easyzoom').easyZoom();
+    var api = $easyzoom.data('easyZoom');
+
+    $(document).ready(function() {
+
+        var window_width = $(window).width();
+
+        $(window).load(function() {
+            if(window_width > 768) {
+                fixResizedImages();
+            }
+        });
+
+    });
+
+    function fixResizedImages() {
+        $('[data-height]').each(function() {
+            var h = $($(this).data('height')).height();
+            var e = $(this).data('height-ext');
+            h = h+e;
+            $(this).css('height', h+'px')
+        });
+    }
+
+</script>

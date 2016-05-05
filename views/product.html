@@ -1,0 +1,99 @@
+{% extends "views.base" %}
+
+{% block meta %}
+
+<meta property="og:type" content="product" />
+<meta property="og:title" content="{{ product.name }}" />
+
+{% for image in product.images %}
+<meta property="og:image" content="{{ image.full }}" />
+{% endfor %}
+
+<meta property="og:price:amount" content="{{ (product.salePrice > 0 and product.salePrice < product.price) ? product.salePrice : product.price }}" />
+<meta property="og:price:currency" content="{{ store.currency }}" />
+<meta property="og:description" content="{{ description }}" />
+<meta property="og:url" content="{{ url_current() }}" />
+<meta property="og:site_name" content="{{ title }} - Agaval" />
+
+<meta name="twitter:card" content="product">
+<meta name="twitter:title" content="{{ product.name }}">
+<meta name="twitter:description" content="{{ description }}">
+<meta name="twitter:image" content="{{ product.image.full }}">
+<meta name="twitter:label1" content="Precio">
+<meta name="twitter:data1" content="{{ (product.salePrice > 0 and product.salePrice < product.price) ? product.salePrice | price : product.price | price }} {{ store.currency }}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="central-content">
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/">Home</a>
+                    /
+                    {% for category in product.categories %}
+                    <a href="{{ category.url }}">{{ category.name }}</a>
+                    /
+                    {% endfor %}
+                    {{ product.name }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="titulo-pagina">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>{{ product.name }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'views.inc.producto-detalle' %}
+
+    <div class="home-destacados-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="titulo-seccion">Productos Relacionados</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="productos-content">
+                        {% for product in product.related %}
+                        <div class="producto-item-fix">
+                            <div class="producto-item">
+                                <div class="destacado-box-imagen">
+                                    <img src="{{ product.image.medium }}" class="img-responsive" />
+                                    <div class="overlay">
+                                        <a href="#" class="left" data-item="{{ product.idProduct }}" onclick="agregarCarrito(this, event)" data-toggle="tooltip" data-placement="top" title="Agregar al Carrito"><i class="fa fa-plus"></i></a>
+                                        <a href="#" class="right" data-item="{{ product.idProduct }}" onclick="agregarFavoritos(this, event)" data-toggle="tooltip" data-placement="top" title="Agregar a Favoritos"><i class="fa fa-heart-o"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="destacado-box-descripcion">
+                                    <div class="titulo">
+                                        <a href="{{ product.url }}">
+                                            {{ product.name }}
+                                        </a>
+                                    </div>
+                                    <div class="precio">{{ product.price | price }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'views.inc.home-destacados' %}
+
+
+</div>
+{% endblock %}
+

@@ -1,0 +1,163 @@
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+        <a href="#tabdescripcion" aria-controls="tabdescripcion" role="tab" data-toggle="tab">Descripción</a>
+    </li>
+    <li role="presentation">
+        <a href="#tabresena" aria-controls="tabresena" role="tab" data-toggle="tab">Reseñas</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane tabdescripcion active" id="tabdescripcion">
+        {{ product.description }}
+    </div>
+    <div role="tabpanel" class="tab-pane tabresena" id="tabresena">
+
+        {% for comment in product.comments %}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="row">
+                    <div class="col-md-4"><input id="rating" name="rating" class="rating resena-rating" data-min="0" data-max="5" data-step="0.1" value="{{ comment.quality }}" data-readonly="true" data-symbol="&#xf006;&nbsp;" data-glyphicon="false"  data-rating-class="rating-fa" ></div>
+                    <div class="col-md-8">
+                        <div class="resena-titulo--rating">{{ comment.name }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="autor">por {{ comment.user }}</div>
+                        <div class="texto-resenia">
+                            {{ comment.comment }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separador-resena"></div>
+        {% endfor %}
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr/>
+                        <h2 class="title">Dejar Reseña</h2>
+                        <div class="form-resena">
+                            <form id="form-resena" method="POST" action="/comment">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label></label>
+                                            <input id="ratingResena" name="quality" class="ratingResena" data-min="0" data-max="5" data-step="0.1" value="5"  data-symbol="&#xf006;&nbsp;" data-glyphicon="false"  data-rating-class="rating-fa" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="name" id="asunto" placeholder="Título" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control" rows="3" id="mensaje" name="comment" placeholder="Mensaje"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="product" value="{{product.idProduct}}">
+                                <button type="submit" class="btn form-control">Publicar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(".resena-rating").rating({
+        stars: 5,
+        glyphicon: true,
+        symbol: null,
+        ratingClass: '',
+        disabled: false,
+        readonly: false,
+        rtl: false,
+        size: 'xs',
+        showClear: false,
+        showCaption: false,
+        defaultCaption: '{rating}',
+        starCaptions: {
+            1: '1',
+            2: '2',
+            3: '3',
+            4: '4',
+            5: '5'
+        },
+        starCaptionClasses: {
+            1: 'label label-danger',
+            2: 'label label-warning',
+            3: 'label label-info',
+            4: 'label label-primary',
+            5: 'label label-success'
+        },
+        clearButton: '<i class="glyphicon glyphicon-minus-sign"></i>',
+        clearButtonTitle: 'Clear',
+        clearButtonBaseClass: 'clear-rating',
+        clearButtonActiveClass: 'clear-rating-active',
+        clearCaption: false,
+        clearCaptionClass: 'label label-default',
+        clearValue: null,
+        captionElement: null,
+        clearElement: null,
+        containerClass: null,
+    });
+</script>
+<script>
+    $("#ratingResena").rating({
+        stars: 5,
+        glyphicon: true,
+        symbol: null,
+        ratingClass: '',
+        disabled: false,
+        readonly: false,
+        rtl: false,
+        size: 'xs',
+        showClear: false,
+        showCaption: true,
+        defaultCaption: '{rating}',
+        starCaptions: {
+            1: '1',
+            2: '2',
+            3: '3',
+            4: '4',
+            5: '5'
+        },
+        starCaptionClasses: {
+            1: 'label label-danger',
+            2: 'label label-warning',
+            3: 'label label-info',
+            4: 'label label-primary',
+            5: 'label label-success'
+        },
+        clearButton: '<i class="glyphicon glyphicon-minus-sign"></i>',
+        clearButtonTitle: 'Clear',
+        clearButtonBaseClass: 'clear-rating',
+        clearButtonActiveClass: 'clear-rating-active',
+        clearCaption: false,
+        clearCaptionClass: 'label label-default',
+        clearValue: null,
+        captionElement: null,
+        clearElement: null,
+        containerClass: null,
+    });
+</script>

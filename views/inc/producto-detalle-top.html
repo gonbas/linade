@@ -1,0 +1,157 @@
+<div class="producto-detalle-top-precio">
+    {% if product.salePrice > 0 %}
+        <b data-salePrice>{{ product.salePrice | price }}</b><br>
+        <small class="dscto" data-price>{{ product.price | price }}</small>
+    {% else %}
+        <div class="" data-price>{{ product.price | price }}</div>
+    {% endif %}
+</div>
+
+
+<div class="producto-detalle-top-rating">
+    <input id="rating" name="rating" class="rating" data-min="0" data-max="5" data-step="0.1" value="{{ product.score.quality }}" data-readonly="true" data-symbol="&#xf006;&nbsp;" data-glyphicon="false"  data-rating-class="rating-fa" >
+    <div class="producto-rating">{{ product.score.quality }}/5.0</div>
+    <div class="clearfix"></div>
+    <script>
+        $("#rating").rating({
+            stars: 5,
+            glyphicon: true,
+            symbol: null,
+            ratingClass: '',
+            disabled: false,
+            readonly: false,
+            rtl: false,
+            size: 'xs',
+            showClear: false,
+            showCaption: false,
+            defaultCaption: '{rating}',
+            starCaptions: {
+                1: '1',
+                2: '2',
+                3: '3',
+                4: '4',
+                5: '5'
+            },
+            starCaptionClasses: {
+                1: 'label label-danger',
+                2: 'label label-warning',
+                3: 'label label-info',
+                4: 'label label-primary',
+                5: 'label label-success'
+            },
+            clearButton: '<i class="glyphicon glyphicon-minus-sign"></i>',
+            clearButtonTitle: 'Clear',
+            clearButtonBaseClass: 'clear-rating',
+            clearButtonActiveClass: 'clear-rating-active',
+            clearCaption: false,
+            clearCaptionClass: 'label label-default',
+            clearValue: null,
+            captionElement: null,
+            clearElement: null,
+            containerClass: null,
+        });
+    </script>
+</div>
+<div class="producto-detalle-top-pedir">
+    <form action="/cart/add" method="POST">
+        <div class="row">
+            <div class="col-md-6">
+                {% for key,option in product.options %}
+                <input type="hidden" name="options[{{ key }}]" value="{{ option.idOption }}">
+                {% if option.type == 'colors' %}
+                    <div class="input-color">
+                        <select id="colorselector" class="colorVariations" name="values[{{ key }}]" data-option="{{ option.idOption }}">
+                            {% for color in option.values %}
+                            <option value="{{ color.idOptionValue }}" data-color="{{ color.hex1 }}" {{ color.selected ? 'selected' : '' }}>{{ color.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <span id="colorTitle">{{option.selected.name}}</span>
+                    </div>
+                {% else %}
+                <div class="clearfix"></div>
+                <select class="form-control " name="values[{{ key }}]" data-option="{{ option.idOption }}">
+                    {% for value in option.values %}
+                    <option value="{{ value.idOptionValue }}" {{ value.selected ? 'selected' : '' }}>{{ value.name }}</option>
+                    {% endfor %}
+                </select>
+                <div class="clearfix"></div>
+                {% endif %}
+                {% endfor %}
+                <script>
+                    $('#colorselector').colorselector({
+                        callback: function (value, color, title) {
+                            $("#colorTitle").html(title);
+                        }
+                    });
+
+                    $('[data-option]').on('change', function() {
+                        $('.agregar-al-carrito').attr('disabled', 'disabled');
+                        getCombination();
+                    });
+
+                    function getCombination() {
+
+                        if(!$('[data-option]').length > 0) {
+                            $('.agregar-al-carrito').removeAttr('disabled');
+                            return false;
+                        }
+
+                        var values = [];
+                        var options = [];
+
+                        $('[data-option]').each(function (i) {
+                            var combOpt = $(this).val();
+                            options[i] = $(this).attr('data-option');
+                            values[i] = combOpt;
+                        });
+
+                        $.ajax({
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {values: JSON.stringify(values), options: JSON.stringify(options)},
+                            success: function (data) {
+                                if(data.price) $('[data-price]').text(data.price);
+                                if(data.salePrice) $('[data-salePrice]').text(data.salePrice);
+                                $('.agregar-al-carrito').removeAttr('disabled');
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                $('.agregar-al-carrito').attr('disabled', 'disabled');
+                                return false;
+                            }
+                        });
+                    }
+                    getCombination();
+                </script>
+            </div>
+            <div class="col-md-6">
+                <div class="input-cantidad">
+                    <a class="menos" href="javascript:void(0);" onclick="inputCantidadAgregar(false, this);">-</a>
+                    <input type="text" class="form-control" value="1" name="quantity" />
+                    <a class="mas" href="javascript:void(0);" onclick="inputCantidadAgregar(true, this);">+</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content-agregar-carrito">
+                    <input type="hidden" name="idProduct" value="{{ product.idProduct }}"/>
+                    <button type="submit" class="btn agregar-al-carrito invertido-button">+ AÑADIR AL CARRITO</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-agregar-favoritos">
+                <a href="/favoritos.php" class="link-agregar-favoritos" disabled="disabled"><i class="fa fa-heart-o"></i> AGREGAR A FAVORITOS</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="descripcion">
+            {{ product.shortDescription }}
+        </div>
+    </div>
+</div>

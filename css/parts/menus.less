@@ -1,0 +1,202 @@
+.menu-content{
+    background:#FFF;
+    padding: 6px 0;
+    .fredo;
+    text-transform: uppercase;
+    .logo a{
+        .outline-in;
+    }
+    @media (max-width:767px){
+        .logo{
+            text-align: center;
+            padding: 4px 0;
+        }
+        img{
+            margin:0 auto;
+        }
+    }       
+}
+.menu-categorias{
+    max-width:30%;
+    height:43px;
+    a{
+        padding-left: 15px;    
+        height: 55px;
+        top: -6px;
+        line-height: 48px;
+        padding-top: 4px;
+        display:block;
+        color:@link-categorias;
+        .icon-sink;
+        &:before {
+            color:@icon-down;
+            content:"\f0d7" 
+        }        
+        &:hover{
+            color:@link-categorias-hover;
+            &:before{
+                color:@link-categorias; 
+            }
+        }
+        &.active{
+            background: @violeta;
+            color:#FFF;
+            &:before {
+              color:#FFF;  
+            }
+        }
+    }
+}
+.menu-search{
+    max-width:70%;
+    .navbar-form{
+        margin: 6px 0px 0 0;
+    }
+    .input-group{
+        border:solid 2px @search-color;
+        .border-radius(17px);
+        padding:0; 
+    }
+    #srch-term{
+        height:29px;
+        font-family: Arial;
+        .box-shadow(none);
+        .border-radius(17px);        
+        border: none;
+    }
+    #btn-search{
+        height:29px;
+        .rotate;
+        i{
+            background:url(../images/icon-search.png) no-repeat center center;
+            background-size: 90% 90%;  
+            height:29px;
+            width:35px;
+            display:inline-block;           
+        }
+        padding: 0 3px  0 10px;
+        border: none;
+        .box-shadow(none);
+        .border-radius(17px);          
+        background: none;
+    }
+}
+
+.cuenta{
+    padding-top:5px;
+    a{
+        display:inline-block;
+        height:33px;
+        width: 34px;
+        .outline-in;
+        margin:0 20px;
+        &.link-usuario{
+            background: url(../images/icon-user.png) no-repeat center center;
+        }
+        &.link-heart{
+            background:  url(../images/icon-heart.png) no-repeat center center;
+        }
+        @media (max-width:767px){
+            margin:0 3px;
+        }        
+    }
+}
+
+.carrito{
+    padding-top:5px;
+    .cuenta{
+        padding-top: 0;
+    }
+    .precio{
+        .sniglet-bold;
+        font-size: 28px;
+        line-height: 34px;
+        color:@violeta;
+        margin-right: 20px;
+        @media (max-width:767px){
+            font-size: 17px;
+            margin:0 3px;
+        }         
+    }
+    .link-carrito{
+        margin-top: -10px;
+        display:inline-block;
+        height:34px;
+        width: 34px;
+        .outline-in;        
+        background: url(../images/icon-cart.png) no-repeat center center;
+        position: relative;
+        span{
+            position: absolute;
+            border:solid 1px @violeta;
+            background: @violeta;
+            color:#FFF;
+            font-family: Arial;
+            font-size:9px;
+            display: inline-block;
+            padding: 3px;
+            line-height: 7px;
+            position:absolute;
+            top:-9px;
+            right:-3px;
+            .border-radius(50%);
+        }
+    }
+}
+
+.menu-overlay-categorias{
+    display:none;
+    background: @violeta;
+    padding: 20px 0;
+    color:#FFF;    
+    z-index:999;
+    width:100%;
+    ul{
+        padding-left: 0;
+    }
+    ul,li{
+        list-style: none;
+    }
+    a{
+        .menu-link-side;        
+        padding-left: 0;
+        padding-right: 0;
+        color:#FFF;
+        &:hover,&.active{
+         color:@gris-oscuro;   
+        }      
+        &:before{
+            background: @gris-oscuro;        
+        }     
+        &.active{
+            &:before{
+                display: block;
+                width:100%;
+                left:0; 
+            }  
+        }        
+    }
+    .titulo-menu{
+        .fredo;
+        font-size: 19px;
+        
+    }
+    .right{
+        position:relative;
+        padding-left:20px;
+        &:before{
+            content:"";
+            display:block;
+            position:absolute;
+            top: 0;
+            left:0;
+            height: 100%;
+            width: 1px;
+            background:#FFF;
+        }
+        li{
+            float:left;
+            width:50%;
+        }
+    }
+}

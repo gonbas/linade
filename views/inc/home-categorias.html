@@ -1,0 +1,103 @@
+<div class="home-categorias-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="titulo-seccion">Categorías</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="categoria-content">
+                    {% if sections.categories1 %}
+
+                    <div class="categoria-item-fix">
+                        <div class="int">
+                            <div class="categoria-item cat-verde">
+                                <a href="{{ sections.categories1.url }}">
+                                    <div class="categoria-box-imagen">
+                                        <img src="{{ sections.categories1.image.medium }}" class="img-responsive" />
+                                    </div>
+                                    <div class="categoria-box-descripcion">
+                                        <div class="titulo">
+                                            {{ sections.categories1.title }}
+                                        </div>
+                                        <div class="descripcion">{{ sections.categories1.description }}</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endif %}
+                    {% if sections.categories2 %}
+
+                    <div class="categoria-item-fix">
+                        <div class="int">
+                            <div class="categoria-item cat-naranja">
+                                <a href="{{ sections.categories2.url }}">
+                                    
+                                    <div class="categoria-box-imagen">
+                                        <img src="{{ sections.categories2.image.medium }}" class="img-responsive" />
+                                    </div>
+                                    <div class="categoria-box-descripcion">
+                                        <div class="titulo">
+                                            {{ sections.categories2.title }}
+                                        </div>
+                                        <div class="descripcion">{{ sections.categories2.description }}</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endif %}
+                    {% if sections.categories3 %}
+
+                    <div class="categoria-item-fix">
+                        <div class="int">
+                            <div class="categoria-item cat-rojo">
+                                <a href="{{ sections.categories3.url }}">
+                                    
+                                    <div class="categoria-box-imagen">
+                                        <img src="{{ sections.categories3.image.medium }}" class="img-responsive" />
+                                    </div>
+                                    <div class="categoria-box-descripcion">
+                                        <div class="titulo">
+                                            {{ sections.categories3.title }}
+                                        </div>
+                                        <div class="descripcion">{{ sections.categories3.description }}</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endif %}
+                    {% if sections.categories4 %}
+
+                    <div class="categoria-item-fix">
+                        <div class="int">
+                            <div class="categoria-item cat-celeste">
+                                <a href="{{ sections.categories4.url }}">
+                                    
+                                    <div class="categoria-box-imagen">
+                                        <img src="{{ sections.categories4.image.medium }}" class="img-responsive" />
+                                    </div>
+                                    <div class="categoria-box-descripcion">
+                                        <div class="titulo">
+                                            {{ sections.categories4.title }}
+                                        </div>
+                                        <div class="descripcion">{{ sections.categories4.description }}</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

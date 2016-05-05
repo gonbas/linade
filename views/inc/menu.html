@@ -1,0 +1,58 @@
+<div class="menu-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-2 col-xs-12">
+                <div class="logo">
+                    <a href="/"><img src="{{ store.logoStore }}" class="img-responsive"/></a>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 hidden-xs">
+                <div class="menu-categorias pull-left ">
+                    <a href="#" class="dropdown-categorias">Categorías </a>
+                </div>
+                <div class="menu-search pull-left hidden-xs hidden-sm">
+                    <form class="navbar-form" role="search" action="/search" method="GET">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Buscar" name="key"
+                                   id="srch-term" value="{{ search.query }}">
+
+                            <div class="input-group-btn">
+                                <button class="btn" type="submit" id="btn-search">
+                                    <i></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-6 ">
+                <div class="carrito pull-right">
+                    <span class="cuenta pull-left hidden-xs">
+                        <a href="/favoritos" class="link-heart"></a>
+                    </span>
+                    <span class="cuenta pull-left">
+                        <a href="{{ customer.logged ? '/account' : '/login' }}" class="link-usuario"></a>
+                    </span>
+                    <span class="precio" data-total>{{ cart.total | price }}</span>
+                    <a href="/cart" class="link-carrito"><span>{{ itemCart }}</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="menu-overlay-categorias">
+    <div class="container">
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-md-2 hidden-xs">
+                <div class="titulo-menu">{{ category.name }}</div>
+                <ul>
+                    {% for sub in category.subcategories %}
+                        <li><a href="{{ sub.url }}" class="">{{ sub.name }}</a></li>
+                    {% endfor %}
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="row carrito-total-detalle">
+    <div class="col-md-6 col-sm-offset-6">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="carrito-total-descripcion">Subtotal</div>
+            </div>
+            <div class="col-sm-6">
+                <div class="carrito-total-valor" data-subtotal>{{ cart.subtotal | price }}</div>
+            </div>
+        </div>
+        <div class="row">
+            <!--<div class="col-sm-6">-->
+                <!--<div class="carrito-total-descripcion">Costo Envío</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-6">-->
+                <!--<div class="carrito-total-valor">-->
+                    <!--<div class="radio">-->
+                        <!--<label class="label_radio">-->
+                            <!--<input type="radio" name="envio" value="1" checked="checked" class="pull-left"> <span>Opción1:</span> <strong>$50.00</strong>-->
+                        <!--</label>-->
+                    <!--</div>-->
+                    <!--<div class="radio">-->
+                        <!--<label class="label_radio">-->
+                            <!--<input type="radio" name="envio" value="2"> <span>Opción2:</span> <strong>$40.00</strong>-->
+                        <!--</label>-->
+                    <!--</div>-->
+                    <!--<div class="radio">-->
+                        <!--<label class="label_radio">-->
+                            <!--<input type="radio" name="envio" value="3"> <span>Opción3:</span> <strong>$30.00</strong>-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="row coupon-container {% if cart.coupon %} active {% endif %}">
+            <div class="col-sm-6">
+                <div class="carrito-total-descripcion">Cupon</div>
+            </div>
+            <div class="col-sm-6">
+                <div class="carrito-total-valor total" data-coupon>{{ cart.coupon.value | price }}</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="carrito-total-descripcion">Total</div>
+            </div>
+            <div class="col-sm-6">
+                <div class="carrito-total-valor total" data-total>{{ cart.total | price }}</div>
+            </div>
+        </div>
+    </div>
+</div>

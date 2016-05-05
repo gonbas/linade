@@ -1,0 +1,87 @@
+.favoritos-content{
+    .contacto-content;
+    .inner{
+        padding: 30px 50px;
+        @media (max-width:767px){
+            padding: 20px;
+            font-size:13px;
+        }         
+    }
+
+}
+.favorito-row{
+    padding-bottom:22px;
+    @media (max-width:767px){        
+        margin:5px 2%;
+        border:solid 1px @input-border;
+        .border-radius(10px);
+        padding:10px;
+        width:46%;
+        float:left;
+    }        
+    .fav-imagen{
+        img{
+            .border-radius(10px);
+            .glow;
+        }
+    }
+    .fav-precio{
+        padding-top:18px;
+        color:@gris-oscuro;
+        .sniglet-bold;
+        font-size: 23px;     
+        @media (max-width:992px){        
+            padding-top:5px;
+            font-size:16px;
+        }          
+    }
+    .fav-botones{
+        padding-top:18px;
+        @media (max-width:992px){        
+            padding-top:5px;
+        }         
+        a{
+            display: inline-block;
+            width: 37px;
+            height: 37px;       
+            margin:0 5px;
+        }
+        .favorito-mas{
+            .grow;
+            background: url(../images/icon-mas.png) no-repeat;
+            &.abierto{
+                background: url(../images/icon-menos.png) no-repeat;
+            }
+        }
+        .favorito-menos{
+            .shrink;
+            background: url(../images/icon-cruz.png) no-repeat;            
+        }
+    }
+    .fav-descripcion{
+        padding-top:18px;
+        @media (max-width:992px){        
+            padding-top:5px;
+        }          
+        .titulo{
+            .quick-bold;
+            font-size: 27px;
+            color:@gris-oscuro;
+            @media (max-width:992px){        
+                font-size:20px;
+            }              
+            @media (max-width:767px){        
+                font-size:16px;
+            }              
+        }
+        .precio{
+            .sniglet-bold;
+            font-size: 23px;
+            color:@texto-precio-claro;
+            @media (max-width:992px){        
+                .sniglet;
+                font-size:17px;
+            }             
+        }
+    }    
+}

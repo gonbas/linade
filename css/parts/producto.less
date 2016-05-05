@@ -1,0 +1,179 @@
+@import "jssor"; 
+@import url(parts/star-rating.min.css);
+@import url(parts/bootstrap-colorselector.css);
+
+
+.producto-detalle-top{
+    background:#FFF;
+    .border-radius(10px 10px 0 0);
+    .imgbig{
+        .border-radius(10px 0 0 0);
+    }
+    .input-cantidad{
+        float:right;
+        input{
+            border:solid 2px @input-border;
+            .border-radius(10px);
+        }
+        .menos,.mas{
+            line-height: 34px;
+        }
+    }
+
+    .producto-detalle-top-precio{
+        padding: 20px 0 15px 0;
+        text-align: center;
+        .sniglet-bold;
+        font-size: 30px;
+        color:@texto-bread;
+        max-width:380px;
+        margin:0 auto;        
+    }
+    .producto-detalle-top-pedir{
+        max-width: 270px; margin:0 auto;
+    }
+
+    .descripcion{
+        max-width: 340px;
+        margin: 0 auto;
+        .quick;
+        font-size: 15px;
+        color: @texto-bread;
+    }
+    .content-agregar-carrito{
+        padding: 25px 0 12px 0;    
+        .basic-input;
+        .basic-button;      
+        button{
+            display: block !important;
+            width: 100%;
+        }
+    }
+    .content-agregar-favoritos{
+        padding: 25px 0 12px 0;
+        text-align:center;
+        .basic-input;
+        .basic-button;    
+        button{
+            margin: 0 auto;            
+        }
+    }    
+
+}
+.producto-detalle-top-rating{
+    padding:15px 0;
+    max-width:380px;
+    margin:0 auto;
+    text-align:center;
+    .star-rating.rating-xs.rating-disabled{
+        font-size:30px;
+        line-height: 30px;
+        cursor:default;
+        display:inline-block;
+        .rating-stars:before{
+            text-shadow: none;    
+        }
+
+    }       
+    .producto-rating{
+        display:inline-block;
+        line-height: 34px;
+        .quick-bold;
+        font-size: 24px;
+        padding-left: 4px;
+    }
+}
+.producto-detalle-bottom{
+    background:#FFF;
+    .border-radius(0 0 10px 10px);
+    padding: 25px 0 50px 0;
+
+    @media (max-width:992px){
+        padding: 25px;  
+    }
+    .nav-tabs{
+        text-align: center;
+        border-bottom: 2px solid @input-border;
+        li{
+            float: none;
+            margin-bottom: -2px;
+            display: inline-block;
+            a{
+                border: 2px solid @input-border;
+                border-bottom-color: transparent;
+                .fredo;
+                font-size: 22px;
+                color:@texto-precio-claro;   
+                &:hover{
+                    background:#FFF;
+                }
+            }
+            &.active{
+                a{
+                    border: 2px solid @input-border;
+                    border-bottom-color: transparent;
+                    color:#000;                        
+                }    
+            }
+        }
+    }
+
+    .tabdescripcion{
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 0 20px 0;
+        .texto-base-claro;
+    }
+    .tabresena{
+        padding-top:25px;
+
+        .star-rating.rating-xs.rating-disabled{
+            font-size:30px;
+            line-height: 30px;
+            cursor:default;
+            display:inline-block;
+            .rating-stars:before{
+                text-shadow: none;    
+            }
+
+        }  
+        .resena-titulo--rating{
+            display:inline-block;
+            line-height: 34px;
+            .quick-bold;
+            font-size: 20px;
+            padding-left: 4px;
+        }
+        .autor{
+            .quick-bold;
+            font-size: 17px;
+            color:@texto-autor;
+            padding: 10px 0;
+        }
+        .texto-resenia{
+            .texto-base-claro;
+        }
+    }
+
+    .separador-resena{
+        height: 30px;
+        clear:both;
+    }
+}
+
+.form-resena{
+    .basic-input;
+    .basic-button;
+    .basic-checbox; 
+    .basic-textarea;
+        .star-rating.rating-xs{
+            font-size:30px;
+            line-height: 30px;
+            cursor:default;
+            display:inline-block;
+            .rating-stars:before{
+                text-shadow: none;    
+            }
+
+        }      
+}

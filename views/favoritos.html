@@ -1,0 +1,55 @@
+{% extends "views.base" %}
+
+{% block content %}
+
+<div class="central-content">
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/">Home</a> / Favoritos
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="titulo-pagina">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>Favoritos</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="favoritos-content">
+                    <div class="inner">
+                        {% for item in favorites %}
+                        <div class="row favorito-row">
+                            <div class="col-sm-2 fav-imagen">
+                                <a href="{{ item.url }}">
+                                    <img class="img-responsive" src="{{ item.image.small }}"/>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 fav-descripcion">
+                                <div class="titulo">{{ item.name }}</div>
+                                <div class="precio hidden-xs">{{ item.price | price }}</div>
+                            </div>
+                            <div class="col-sm-2 fav-precio">
+                                {{ item.price | price }}
+                            </div>
+                            <div class="col-sm-2 fav-botones">
+                                <a href="javascript:void(0);" class="favorito-mas" data-item="{{ item.idProduct }}" onclick="agregarCarrito(this, event)" data-toggle="tooltip" data-placement="top" title="Agregar al Carrito"/></a>
+                                <a href="javascript:void(0);" class="favorito-menos" onclick="removerFilaFavoritos(this, event);" data-item="{{ item.idProduct }}"  data-toggle="tooltip" data-placement="top" title="Quitar de Favoritos"/></a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

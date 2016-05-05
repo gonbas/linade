@@ -1,0 +1,64 @@
+{% extends "views.base" %}
+
+{% block style %}
+<link href="//cdn.ulcommerce.com/ulcommerce/checkout/css/checkout.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h2 class="text-center">Checkout</h2>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="col-md-4 col-md-offset-4 no-padding">
+                <div class="message message-{{ orderStatus }} message-square message-sm">
+                    {% if orderStatus == 'success' %}
+                    <i class="fa fa-check-circle"></i>
+                    Su orden fue finalizada con éxito y se encuentra en proceso.
+                    {% elseif orderStatus == 'pending' %}
+                    <i class="fa fa-check-circle"></i>
+                    Su orden se encuentra pendiente y se encuentra en estado de validación.
+                    {% elseif orderStatus == 'error' %}
+                    <i class="fa fa-times-circle"></i>
+                    Su orden se encuentra en error, intentelo nuevamente.
+                    {% elseif orderStatus == 'rejected' %}
+                    <i class="fa fa-times-circle"></i>
+                    Su orden ha sido rechazada, intentelo nuevamente.
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% if orderStatus == 'success' or orderStatus == 'pending' %}
+        <div class="col-md-12 text-center sub-title">
+            <h4>Hemos enviado los detalles de la orden a su dirección de correo eletrónico</h4>
+        </div>
+        {% if generatePassword %}
+        <form action="/validate/login" method="POST">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="well">
+                    <h5 class="text-center">Si desea hacer seguimiento de su pedido y ver los detalles de sus ordenes por favor ingrese una contraseña para acceder a su cuenta</h5>
+                    <div class="col-md-8 col-sm-8 form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" class="form-control"/>
+                    </div>
+                    <div class="col-md-8 col-sm-8 form-group">
+                        <label for="password_confirmation">Repetir Contraseña</label>
+                        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control"/>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-green">Registrarse</button>
+                    </div>
+                    <input type="hidden" name="passwordGenerate" value="1">
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </form>
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="//cdn.ulcommerce.com/ulcommerce/checkout/js/checkout.js"></script>
+{% endblock %}

@@ -1,0 +1,118 @@
+.footer-boxes-content{
+    background:@gris-oscuro;
+    padding: 50px 0 45px 0
+}
+.footer-box{
+    .fredo;
+    color:#FFF;
+    .titulo{
+        font-size: 17px;
+        padding: 5px 0;
+        @media (max-width:1200px){
+            font-size:14px;
+        }           
+    }
+    .descripcion{
+        color:@footer-box-gris;
+        font-size: 13px;
+        padding: 5px 0;
+        @media (max-width:1200px){
+            font-size:12px;
+        }           
+    }
+    @media (max-width:1200px){
+       text-align:center;
+       padding:10px 0;
+       max-width:400px;
+       margin:0 auto;
+       img{
+           margin:0 auto;
+       }
+    }     
+}
+
+.footer-content{
+    padding: 30px 0;
+    color:@footer-texto;
+    a{
+        color:@footer-texto;
+    }    
+}
+.footer{
+
+    .titulo{
+        .fredo;
+        font-size: 16px;
+        text-transform: uppercase;
+        padding-bottom: 15px;
+    }
+}
+.menu-footer{
+    ul,li{
+        padding: 0; margin: 0; list-style: none;
+    }
+    li{
+        width:50%;
+        float: left;
+    }
+    a{
+        .menu-link-side;
+        font-size: 14px;
+        padding-left: 0; padding-right: 0;
+    }
+}
+.menu-acerca{
+   .menu-footer;
+   li{
+       width: auto;
+       float: none;
+   }
+}
+.footer-social{
+    .top-social;
+    padding: 10px 0 30px;
+    a{        
+        .link-top;
+        font-size: 38px;
+    }
+}
+.form_suscripcion_email{
+    .border-radius(10px);
+    border:solid 2px @footer-suscri;
+    max-width:240px;
+    .quick;
+    text-transform:uppercase;
+    input,button{
+        border:none;
+        .box-shadow(none);
+    }
+    input{
+        .border-radius(10px 10px 0 0);
+        border-bottom:solid 1px @footer-suscri;
+        padding: 12px;
+        height:40px;
+    }
+    button{
+        .border-radius(0 0 10px 10px);
+        background: @footer-suscri-btn;
+        color:#FFF;
+        .bounce-to-top;
+        padding: 12px;
+        height:40px;        
+        &:before{
+            background:#7e41b5;
+            .border-radius(0 0 10px 10px);       
+        }
+    }
+}
+
+
+.footer-paltalab{
+    padding: 35px 0 15px 0;
+    text-align: center;
+    max-width: 240px;
+    img{        
+        max-height: 34px;
+        margin:0 auto;
+    }
+}

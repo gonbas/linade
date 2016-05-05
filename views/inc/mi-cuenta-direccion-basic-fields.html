@@ -1,0 +1,100 @@
+<div class="form-group">
+    <label for="direccion">Dirección :</label>
+    <input type="text" name="address" class="form-control" id="direccion" value="{{ customer.address.address }}" required>
+</div>
+<div class="form-group">
+    <label for="pais">País:</label>
+    <select class="form-control " name="country_id" id="pais" required obtener-provincias>
+        <option value="">Seleccionar un país</option>
+        {% for country in countries %}
+            <option value="{{ country.id }}" {{ customer.address.country_id == country.id ? 'selected' : '' }}>{{ country.name }}</option>
+        {% endfor %}
+    </select>
+</div>
+<div class="form-group">
+    <label for="provincia">Provincia:</label>
+    <select class="form-control " name="state" id="provincia"  required obtener-localidades>
+        <option value="">Seleccionar una provincia</option>
+    </select>
+    <small></small>
+</div>
+<div class="form-group">
+    <label for="localidad">Localidad:</label>
+    <select class="form-control " name="city" id="localidad"  required>
+        <option value="">Seleccionar una localidad</option>
+    </select>
+    <small></small>
+</div>
+<div class="form-group">
+    <label for="postal">Código Postal:</label>
+    <input type="text" name="postal" class="form-control" id="postal" value="{{ customer.address.postal }}" required>
+    <small></small>
+</div>
+<div class="form-group">
+    <label for="phone">Teléfono:</label>
+    <input type="text" class="form-control" name="phone" id="phone" value="{{ customer.address.phone }}"  required>
+</div>
+
+<script>
+
+    $('[obtener-provincias]').on('change', function() {
+        var id = $(this).val();
+        obtenerProvincias(id, '');
+    })
+
+    $('[obtener-localidades]').on('change', function() {
+        var id = $(this).val();
+        obtenerLocalidades(id, '');
+    })
+
+    function obtenerProvincias(id, state) {
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: '/country/'+id,
+            success: function(data){
+                if(!data.error) {
+                    $('#provincia').html('<option value="">Seleccionar una provincia</option>');
+                    for(var i in data.states) {
+                        $('#provincia').append('<option value="'+data.states[i].id+'" '+ (state == data.states[i].id ? 'selected' : '') +'>'+data.states[i].name+'</option>')
+                    }
+                }
+            },
+            error: function(){
+                return false;
+            }
+        })
+    }
+
+    function obtenerLocalidades(id, city) {
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: '/country/state/'+id,
+            success: function(data){
+                if(!data.error) {
+                    $('#localidad').html('<option value="">Seleccionar una localidad</option>');
+                    for(var i in data.cities) {
+                        $('#localidad').append('<option value="'+data.cities[i].id+'" '+ (city == data.cities[i].id ? 'selected' : '') +'>'+data.cities[i].name+'</option>')
+                    }
+                }
+            },
+            error: function(){
+                return false;
+            }
+        })
+    }
+
+    var defaultCountry = '{{ customer.address.country_id }}';
+    var defaultState = '{{ customer.address.state }}';
+    var defaultCity = '{{ customer.address.city }}';
+
+    if(defaultCountry != null) {
+        obtenerProvincias(defaultCountry, defaultState)
+    }
+
+    if(defaultState != null) {
+        obtenerLocalidades(defaultState, defaultCity)
+    }
+
+</script>

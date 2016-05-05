@@ -1,0 +1,57 @@
+<div class="footer-boxes-content">
+    <div class="container">
+        <div class="row">
+            {% if sections.footer1 %}
+            <div class="col-md-4">
+                <div class="footer-box">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-3">
+                            <img src="{{ sections.footer1.image.medium }}" class="img-responsive"/>
+                        </div>
+                        <div class="col-md-9 col-xs-9">
+                            <div class="titulo">{{ sections.footer1.title }}</div>
+                            <div class="descripcion">
+                                {{ sections.footer1.description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if sections.footer2 %}
+            <div class="col-md-4">
+                <div class="footer-box">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-3">
+                            <img src="{{ sections.footer2.image.medium }}" class="img-responsive"/>
+                        </div>
+                        <div class="col-md-9 col-xs-9">
+                            <div class="titulo">{{ sections.footer2.title }}</div>
+                            <div class="descripcion">
+                                {{ sections.footer2.description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if sections.footer3 %}
+            <div class="col-md-4">
+                <div class="footer-box">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-3">
+                            <img src="{{ sections.footer3.image.medium }}" class="img-responsive"/>
+                        </div>
+                        <div class="col-md-9 col-xs-9">
+                            <div class="titulo">{{ sections.footer3.title }}</div>
+                            <div class="descripcion">
+                                {{ sections.footer3.description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

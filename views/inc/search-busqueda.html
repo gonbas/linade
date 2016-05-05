@@ -1,0 +1,62 @@
+<div class="form-busqueda">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-busqueda-content">
+                    <form id="form-busqueda">
+                        <div class="row">
+                            {% for filter in search.filters %}
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="{{ filter.slug }}">{{ filter.name }}</label>
+                                    <select class="form-control " name="filters[{{ filter.slug }}]" id="{{ filter.slug }}">
+                                        <option value=""></option>
+                                        {% for children in filter.childrens %}
+                                        <option value="{{ children.idFilter }}" {{ children.selected ? 'selected' : '' }}>{{ children.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="marca">Marca</label>
+                                    <select class="form-control " name="make" id="marca">
+                                        <option value=""></option>
+                                        {% for make in makes %}
+                                        <option value="{{ make.idMake }}" {{ search.make == make.idMake ? 'selected' : '' }} >{{ make.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="orden">Ordenar Por</label>
+                                    <select class="form-control " name="filter" id="orden">
+                                        <option value=""></option>
+                                        <option value="4" {% if search.filter == '4' %} selected {% endif %}>Orden Alfabético (Z-A)</option>
+                                        <option value="3" {% if search.filter == '3' %} selected {% endif %}>Orden Alfabético (A-Z)</option>
+                                        <option value="1" {% if search.filter == '1' %} selected {% endif %}>Precio de Mayor a Menor</option>
+                                        <option value="2" {% if search.filter == '2' %} selected {% endif %}>Precio de Menor a Mayor</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="mostrar">Mostrar</label>
+                                    <select class="form-control " name="mostrar" id="mostrar">
+                                        <option value="10" {{ search.productsPerPage == 10 ? 'selected' : '' }}>10</option>
+                                        <option value="20" {{ search.productsPerPage == 20 ? 'selected' : '' }}>20</option>
+                                        <option value="30" {{ search.productsPerPage == 30 ? 'selected' : '' }}>30</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,566 @@
+{% extends "views.base" %}
+
+{% block style %}
+<link href="//cdn.ulcommerce.com/ulcommerce/checkout/css/checkout.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="central-content">
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/">Home</a> / Checkout
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="titulo-pagina">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>Checkout</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <form id="checkout-form" action="/order/add" method="POST">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div class="row">
+                <div class="col-md-8 col-sm-8">
+                    <div class="step-checkout step-one active">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="step-title">
+                                    <span>1. AUTENTICACIÓN</span>
+                                    <span class="check"><i class="fa fa-check-circle"></i></span>
+                                    <span class="error"><i class="fa fa-times-circle"></i></span>
+                                    <span class="edit pull-right"><button type="button" class="btn btn-white">Editar</button></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-content">
+                            <h3 class="text-center">Cuál es su dirección de correo electrónico?</h3>
+                            <div class="row padding login-email">
+                                <div class="col-md-6 col-md-offset-3 form-group">
+                                    <label class="control-label" for="email">Email</label>
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="" autofocus>
+                                    <span class="fa fa-check-circle form-control-feedback" aria-hidden="true"></span>
+                                    <span class="fa fa-times-circle form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="row padding login-account">
+                                <div class="col-md-6 col-sm-6 form-group disabled">
+                                    <label class="control-label" for="email">Email</label>
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="">
+                                    <span class="fa fa-check-circle form-control-feedback" aria-hidden="true"></span>
+                                    <span class="fa fa-times-circle form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6 form-group disabled">
+                                    <label for="pass">Contraseña</label>
+                                    <input type="password" name="password" class="form-control" id="pass" autofocus>
+                                    <span class="fa fa-check-circle form-control-feedback" aria-hidden="true"></span>
+                                    <span class="fa fa-times-circle form-control-feedback" aria-hidden="true"></span>
+                                    <a href="#" class="pull-right recover">Olvidaste tu contraseña?</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-footer">
+                            <div class="actions clearfix">
+                                <div class="col-md-6 col-sm-6 col-xs-6 safe">
+                                    <i class="fa fa-lock"></i>
+                                    <span>Compra segura.</span>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                    <button type="button" class="btn btn-green" next-step="step-validation" disabled>
+                                        <span class="opacity">Continuar</span>
+                                <span class="next-container">
+                                    <p class="next-text">Continuar</p>
+                                </span>
+                                <span class="loading-container">
+                                    <div class="sk-fading-circle">
+                                        <div class="sk-circle1 sk-circle"></div>
+                                        <div class="sk-circle2 sk-circle"></div>
+                                        <div class="sk-circle3 sk-circle"></div>
+                                        <div class="sk-circle4 sk-circle"></div>
+                                        <div class="sk-circle5 sk-circle"></div>
+                                        <div class="sk-circle6 sk-circle"></div>
+                                        <div class="sk-circle7 sk-circle"></div>
+                                        <div class="sk-circle8 sk-circle"></div>
+                                        <div class="sk-circle9 sk-circle"></div>
+                                        <div class="sk-circle10 sk-circle"></div>
+                                        <div class="sk-circle11 sk-circle"></div>
+                                        <div class="sk-circle12 sk-circle"></div>
+                                    </div>
+                                </span>
+                                <span class="check-container">
+                                    <p class="check-text"><i class="fa fa-check"></i></p>
+                                </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-checkout step-two">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="step-title">
+                                    <span>2. ENVÍO</span>
+                                    <span class="check"><i class="fa fa-check-circle"></i></span>
+                                    <span class="error"><i class="fa fa-times-circle"></i></span>
+                                    <span class="edit pull-right"><button type="button" class="btn btn-white">Editar</button></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-content">
+                            <div class="row padding">
+                                <div class="col-md-12 form-group addressbook not-validate">
+                                    <label for="useraddress">Libreta de direcciones</label>
+                                    <select name="useraddress" id="useraddress" class="form-control">
+                                        <option value="new">Nueva dirección</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 form-group not-validate">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="type" checked> Persona Natural
+                                    </label>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2">
+                                            <label class="control-label" for="name">Nombre</label>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input id="name" type="text" class="form-control" name="names">
+                                            <span class="fa fa-check-circle form-control-feedback" aria-hidden="true"></span>
+                                            <span class="fa fa-times-circle form-control-feedback" aria-hidden="true"></span>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 has-error-message">
+                                            Ingresa un nombre correcto.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2">
+                                            <label class="control-label" for="lastname">Apellido</label>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input id="lastname" type="text" class="form-control" name="surnames">
+                                            <span class="fa fa-check-circle form-control-feedback" aria-hidden="true"></span>
+                                            <span class="fa fa-times-circle form-control-feedback" aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2">
+                                            <label class="control-label" for="tel">Telefono</label>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input id="tel" type="phone" class="form-control" name="phone">
+                                            <span class="fa fa-check-circle form-control-feedback" aria-hidden="true"></span>
+                                            <span class="fa fa-times-circle form-control-feedback" aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-group not-validate novalidate">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2">
+                                            <label class="control-label" for="cellphone">Celular</label>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input id="cellphone" type="phone" class="form-control" name="cellphone">
+                                            <span class="fa fa-check-circle form-control-feedback" aria-hidden="true"></span>
+                                            <span class="fa fa-times-circle form-control-feedback" aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2">
+                                            <label for="address">Dirección</label>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input type="address" name="address" id="address" class="form-control">
+                                            <span class="fa fa-check-circle form-control-feedback" aria-hidden="true"></span>
+                                            <span class="fa fa-times-circle form-control-feedback" aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2">
+                                            <label for="country">País <span class="text-danger">*</span></label>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <select type="select" class="form-control" id="country" name="country_id" data-country-pull="true" data-cache>
+                                                <option value="">Elije un país</option>
+                                                {% for key,country in countries %}
+                                                <option value="{{ country.id }}" {{ checkout.country_id == country.id ? 'selected' : '' }}>{{ country.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-group state-container" style="{{ checkout.state ? 'display:block' : '' }}">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2">
+                                            <label for="state">Provincia <span class="text-danger">*</span></label>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <select type="select" class="form-control" id="state" name="state" data-states-pull="true" data-cache>
+                                                <option value="{{ checkout.state }}" selected>Elije una provincia</option>
+                                                {% for key,state in states %}
+                                                <option value="{{ state.id }}">{{ state.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-group city-container" style="{{ checkout.state ? 'display:block' : '' }}">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2">
+                                            <label for="city">Ciudad <span class="text-danger">*</span></label>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <select type="select" class="form-control" id="city" name="city" data-cities-pull="true" data-shipping-pull="true" data-cache value="{{ checkout.city }}">
+                                                <option value="{{ checkout.city }}" selected>Elije una ciudad</option>
+                                                {% for key,city in cities %}
+                                                <option value="{{ city.id }}">{{ city.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <h4>Método de envío</h4>
+                                    <div class="shipping_methods_container">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="step-footer">
+                            <div class="actions clearfix">
+                                <div class="col-md-6 col-sm-6 col-xs-6 safe">
+                                    <i class="fa fa-lock"></i>
+                                    <span>Compra segura.</span>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                    <button class="btn btn-green" next-step="step-three" disabled>
+                                        <span class="opacity">Continuar</span>
+                                <span class="next-container">
+                                    <p class="next-text">Continuar</p>
+                                </span>
+                                <span class="loading-container">
+                                    <div class="sk-fading-circle">
+                                        <div class="sk-circle1 sk-circle"></div>
+                                        <div class="sk-circle2 sk-circle"></div>
+                                        <div class="sk-circle3 sk-circle"></div>
+                                        <div class="sk-circle4 sk-circle"></div>
+                                        <div class="sk-circle5 sk-circle"></div>
+                                        <div class="sk-circle6 sk-circle"></div>
+                                        <div class="sk-circle7 sk-circle"></div>
+                                        <div class="sk-circle8 sk-circle"></div>
+                                        <div class="sk-circle9 sk-circle"></div>
+                                        <div class="sk-circle10 sk-circle"></div>
+                                        <div class="sk-circle11 sk-circle"></div>
+                                        <div class="sk-circle12 sk-circle"></div>
+                                    </div>
+                                </span>
+                                <span class="check-container">
+                                    <p class="check-text"><i class="fa fa-check"></i></p>
+                                </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-checkout step-three">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="step-title">
+                                    <span>3. PAGO</span>
+                                    <span class="check"><i class="fa fa-check-circle"></i></span>
+                                    <span class="error"><i class="fa fa-times-circle"></i></span>
+                                    <span class="edit pull-right"><button type="button" class="btn btn-white">Editar</button></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-content">
+                            <div class="row padding">
+                                <div class="col-md-12">
+                                    <div class="form-group not-validate novalidate">
+                                        <div class="message">
+                                            <input type="checkbox" name="sameAddress" checked >
+                                            Usar mismo datos de envio para la facturación.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fac-address">
+                                    <div class="col-md-12 form-group addressbook not-validate">
+                                        <label for="facAddress">Libreta de direcciones</label>
+                                        <select name="facAddress" id="facAddress" class="form-control">
+                                            <option value="new">Nueva dirección</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 form-group novalidate">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2">
+                                                <label class="control-label" for="name">Nombre</label>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input id="facturation_name" type="text" class="form-control" name="facturation_names">
+                                                <span class="fa fa-check-circle form-control-feedback" aria-hidden="true"></span>
+                                                <span class="fa fa-times-circle form-control-feedback" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 form-group novalidate">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2">
+                                                <label class="control-label" for="lastname">Apellido</label>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input id="facturation_lastname" type="text" class="form-control" name="facturation_surnames">
+                                                <span class="fa fa-check-circle form-control-feedback" aria-hidden="true"></span>
+                                                <span class="fa fa-times-circle form-control-feedback" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 form-group novalidate">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2">
+                                                <label class="control-label" for="facturation_tel">Telefono</label>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input id="facturation_tel" type="phone" class="form-control" name="facturation_phone">
+                                                <span class="fa fa-check-circle form-control-feedback" aria-hidden="true"></span>
+                                                <span class="fa fa-times-circle form-control-feedback" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 form-group not-validate novalidate">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2">
+                                                <label class="control-label" for="facturation_cellphone">Celular</label>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input id="facturation_cellphone" type="phone" class="form-control" name="facturation_cellphone">
+                                                <span class="fa fa-check-circle form-control-feedback" aria-hidden="true"></span>
+                                                <span class="fa fa-times-circle form-control-feedback" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 form-group novalidate">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2">
+                                                <label for="address">Dirección</label>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="address" name="facturation_address" id="facturation_address" class="form-control">
+                                                <span class="fa fa-check-circle form-control-feedback" aria-hidden="true"></span>
+                                                <span class="fa fa-times-circle form-control-feedback" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 form-group novalidate">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2">
+                                                <label for="country">País <span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <select type="select" class="form-control" id="facturation_country" name="facturation_country_id" data-country-pull="true">
+                                                    <option value="">Elije un país</option>
+                                                    {% for key,country in countries %}
+                                                    <option value="{{ country.id }}">{{ country.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 form-group state-container novalidate">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2">
+                                                <label for="facturation_state">Provincia <span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <select type="select" class="form-control" id="facturation_state" name="facturation_state" data-states-pull="true">
+                                                    <option value="">Elije un país</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 form-group city-container novalidate">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2">
+                                                <label for="facturation_city">Ciudad <span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <select type="select" class="form-control" id="facturation_city" name="facturation_city" data-cities-pull="true">
+                                                    <option value="">Elije un país</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-footer">
+                            <div class="actions clearfix">
+                                <div class="col-md-6 col-sm-6 col-xs-6 safe">
+                                    <i class="fa fa-lock"></i>
+                                    <span>Compra segura.</span>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                    <button type="submit" class="btn btn-green" next-step="final">
+                                        <span class="opacity">Pagar <span data-total="{{ cart.total }}">{{ cart.total | price }}</span></span>
+                                <span class="next-container">
+                                    <p class="next-text">Pagar <span data-total="{{ cart.total }}">{{ cart.total | price }}</span></p>
+                                </span>
+                                <span class="loading-container">
+                                    <div class="sk-fading-circle">
+                                        <div class="sk-circle1 sk-circle"></div>
+                                        <div class="sk-circle2 sk-circle"></div>
+                                        <div class="sk-circle3 sk-circle"></div>
+                                        <div class="sk-circle4 sk-circle"></div>
+                                        <div class="sk-circle5 sk-circle"></div>
+                                        <div class="sk-circle6 sk-circle"></div>
+                                        <div class="sk-circle7 sk-circle"></div>
+                                        <div class="sk-circle8 sk-circle"></div>
+                                        <div class="sk-circle9 sk-circle"></div>
+                                        <div class="sk-circle10 sk-circle"></div>
+                                        <div class="sk-circle11 sk-circle"></div>
+                                        <div class="sk-circle12 sk-circle"></div>
+                                    </div>
+                                </span>
+                                <span class="check-container">
+                                    <p class="check-text"><i class="fa fa-check"></i></p>
+                                </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 sidebar">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="title">
+                                <span>TU ORDEN</span>
+                            </div>
+                            <div class="sidebar-content">
+                                <div class="sidebar-content-media">
+                                    {% for product in cart.product %}
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#">
+                                                <img class="media-object" src="{{ product.image }}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">{{ product.product.name }}</h5>
+                                            <div class="media-content-details">
+                                                <div class="col-xs-3">
+                                                    SKU:
+                                                </div>
+                                                <div class="col-xs-9">
+                                                    {{ product.product.sku }}
+                                                </div>
+                                                {% for key,option in product.option %}
+                                                <div class="col-xs-3">
+                                                    {{ option }}:
+                                                </div>
+                                                <div class="col-xs-9">
+                                                    {% if 'color' in option | lower %} <span class="circle" style="{{ product.values[key].value1 }}"></span> {% else %} {{ product.values[key].name }} {% endif %}</small>
+                                                </div>
+                                                {% endfor %}
+
+                                                <div class="col-xs-3">
+                                                    Qty:
+                                                </div>
+                                                <div class="col-xs-9">
+                                                    {{ product.quantity }}
+                                                </div>
+                                            </div>
+                                            <div class="media-price" data-slug="{{ product.product.slug }}">
+                                                {{ (product.price * product.quantity) | price }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="sidebar-totals">
+                                    <div class="col-xs-6 text-left">
+                                        <p>SUBTOTAL</p>
+                                        <p>ENVIO</p>
+                                        <p>IVA</p>
+                                        <p class="coupon-container {% if cart.coupon %} active {% endif %}">CUPON</p>
+                                        <p><b>TOTAL</b></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p data-subtotal>{{ cart.subtotaltax | price }}</p>
+                                        <p data-envio>{{ cart.shipping | price }}</p>
+                                        <p data-iva>{{ cart.tax | price }}</p>
+                                        <p class="coupon-container {% if cart.coupon %} active {% endif %}" data-coupon>{{ cart.coupon.value | price }}</p>
+                                        <p><b class="color" data-total="{{ cart.total }}">{{ cart.total | price }}</b></p>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="sidebar-cupons">
+                                <h4>CUPÓN</h4>
+                                <p>Ingresa el código de tu cupón o tarjeta de regalo</p>
+                                <div class="col-md-6 col-xs-8 form-group has-feedback {% if cart.coupon %} has-success {% endif %}">
+                                    <input type="text" class="form-control" name="coupon" value="{{ cart.coupon.code }}"/>
+                                    <span class="fa fa-check-circle form-control-feedback" aria-hidden="true"></span>
+                                    <span class="fa fa-times-circle form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-xs-12">
+                                    <button type="button" class="btn btn-white btn-coupon">
+                                        <span class="opacity">Usar Cupón</span>
+                                <span class="next-container">
+                                    <p class="next-text">Usar Cupón</p>
+                                </span>
+                                <span class="loading-container">
+                                    <div class="sk-fading-circle">
+                                        <div class="sk-circle1 sk-circle"></div>
+                                        <div class="sk-circle2 sk-circle"></div>
+                                        <div class="sk-circle3 sk-circle"></div>
+                                        <div class="sk-circle4 sk-circle"></div>
+                                        <div class="sk-circle5 sk-circle"></div>
+                                        <div class="sk-circle6 sk-circle"></div>
+                                        <div class="sk-circle7 sk-circle"></div>
+                                        <div class="sk-circle8 sk-circle"></div>
+                                        <div class="sk-circle9 sk-circle"></div>
+                                        <div class="sk-circle10 sk-circle"></div>
+                                        <div class="sk-circle11 sk-circle"></div>
+                                        <div class="sk-circle12 sk-circle"></div>
+                                    </div>
+                                </span>
+                                <span class="check-container">
+                                    <p class="check-text"><i class="fa fa-check"></i></p>
+                                </span>
+                                    </button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" data-type="mercadopago">
+            <input type="hidden" name="addresses" value="0" >
+            <input type="hidden" name="payment" value="3" >
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="//cdn.ulcommerce.com/ulcommerce/checkout/js/checkout.js"></script>
+{% endblock %}

@@ -1,0 +1,54 @@
+<div class="inicio-registro">
+    <div class="title">REGISTRATE</div>
+    <form id="form-registro" method="POST" action="/register">
+        <div class="form-group">
+            <input type="text" class="form-control" name="firstname" placeholder="Nombres" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="lastname" placeholder="Apellidos">
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Teléfono">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Contraseña">
+        </div>
+        <button type="submit" class="btn form-control">Registrarme</button>
+        <div class="checkbox">
+            <label class="label_check" >
+                <input type="checkbox" name="condiciones" value="1" checked="checked"> He leído y acepto los términos y condiciones.
+            </label>
+        </div>
+        <div class="checkbox">
+            <label  class="label_check" >
+                <input type="checkbox" name="newsletter" value="1" checked="checked"> Suscribirme al newsletter.
+            </label>
+        </div>
+    </form>
+    <script type="text/javascript">
+        $("#form-registro").validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                phone: {
+                    required: true
+                },
+                password: {
+                    required: true,
+                    equalTo: "#password_confirmation"
+                },
+                password_confirmation: {
+                    required: true,
+                }
+            }
+        });
+    </script>
+</div>

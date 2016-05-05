@@ -1,0 +1,35 @@
+<div class="cambiar-direccion">
+    <div class="title">MI DIRECCIÓN</div>
+    <form id="form-direccion" class="form-inline" method="POST" action="/account/update/address/default">
+        {% include 'views.inc.mi-cuenta-direccion-basic-fields' %}
+        <div class="form-group cont-submit">
+            <label> </label>
+            <button type="submit" class="btn form-control">Actualizar</button>
+        </div>
+    </form>
+    <script type="text/javascript">
+        $("#form-direccion").validate({
+            rules: {
+                direccion: {
+                    required: true
+                },
+                pais: {
+                    required: true
+                },
+                provincia: {
+                    required: true
+                },
+                localidad: {
+                    required: true
+                },
+                inputTelefono: {
+                    required: true
+                },
+                inputCp: {
+                    required: true,
+                    digits: true
+                }
+            }
+        });
+    </script>
+</div>

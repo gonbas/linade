@@ -1,0 +1,67 @@
+<div class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="footer">
+                    <div class="titulo">
+                        Categorías
+                    </div>
+                    <div class="menu-footer">
+                        <ul>
+                            {% for category in categories %}
+                            <li><a href="{{ category.url }}" class="{{ category.isActive }}">{{ category.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                {% if menus.bottom %}
+                <div class="footer">
+                    <div class="titulo">
+                        {{ menus.bottom.name }}
+                    </div>
+                    <div class="menu-acerca">
+                        <ul>
+                            {% for item in menus.bottom.children %}
+                                <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                <div class="footer-social">
+                    <div class="footer-social wow slideInDown"  data-wow-duration="1s">
+                        {% for social in socials %}
+                        <a href="{{ social.url }}" target="_blank"><i class="fa fa-{{ social.name }}"></i></a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="footer-suscripcion">
+                    <form id="form_suscripcion_email" method="POST" action="/newsletter">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="form_suscripcion_email">
+                            <input type="email" name="email" id="suscripcion_email" placeholder="Tu Email"  class="form-control" autocomplete="off" required/>
+                            <button class="btn form-control">Enviar!</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="footer-paltalab">
+                    <div class="paltalab-logo">
+                        <a href="http://paltalab.com/" target="_blank" class="link-paltalab-logo">
+                            <img class="img-responsive" src="{{ 'images/paltalab.png' | static_url }}"   data-toggle="tooltip" data-placement="left" title="PaltaLab: Creative Commerce"  />
+                        </a>
+                    </div>
+                    <div class="paltalab-logo">
+                        <img class="img-responsive" src="{{ 'images/commodo.png' | static_url }}"   data-toggle="tooltip" data-placement="left" title="SSL Commodo: Security"  />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
